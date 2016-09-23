@@ -128,7 +128,7 @@ class Bot(object):
         self.running = True
 
         # Fix keepalives as long as we're ``running``.
-        asyncio.async(self.ws_keepalive())
+        asyncio.ensure_future(self.ws_keepalive())
 
         while True:
             content = yield from self.ws.recv()
@@ -145,7 +145,7 @@ class Bot(object):
             type_handlers = self.handlers[message_type]
 
             for handler in itertools.chain(self.handlers[ALL], type_handlers):
-                asyncio.async(handler(self, message))
+                asyncio.ensure_future(handler(self, message))
 
         self.running = False
 

@@ -17,7 +17,7 @@ setup(
     install_requires = [
         "aiohttp",
         "requests==2.5.0",
-        "websockets==2.3",
+        "websockets==3.2",
     ],
 
     entry_points = {'console_scripts': [
